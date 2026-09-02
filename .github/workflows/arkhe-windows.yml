@@ -13,6 +13,12 @@ on:
         required: false
         default: "arkhe-windows"
 
+# flutter-build.yml icindeki job'lar (kapali olanlar dahil) baslangicta dogrulanir;
+# generate-sbom 'contents: write' istedigi ve Windows job'unun "Publish Release"
+# adimi prerelease olusturdugu icin caller'a bu izin veriliyor.
+permissions:
+  contents: write
+
 jobs:
   build:
     uses: ./.github/workflows/flutter-build.yml
