@@ -1,0 +1,22 @@
+name: Arkhe Destek - Windows Build
+
+# Arkhe Ajans markali RustDesk istemcisi (yalnizca Windows x86_64).
+# Sunucu + public key libs/hbb_common (Arkhe34/hbb_common fork) icine gomulu.
+# flutter-build.yml icinde Windows disi tum job'lar ve MSI adimlari devre disi.
+# Elle tetiklenir: Actions -> "Arkhe Destek - Windows Build" -> Run workflow.
+
+on:
+  workflow_dispatch:
+    inputs:
+      upload-tag:
+        description: "Ciktilarin yuklenecegi prerelease etiketi"
+        required: false
+        default: "arkhe-windows"
+
+jobs:
+  build:
+    uses: ./.github/workflows/flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: ${{ inputs.upload-tag }}
